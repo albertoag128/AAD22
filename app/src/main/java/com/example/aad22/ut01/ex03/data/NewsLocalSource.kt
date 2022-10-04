@@ -7,6 +7,8 @@ import com.google.gson.Gson
 
 class NewsLocalSource (val sharedPref: SharedPreferences) {
 
+    private val gson = Gson()
+
     fun setNews(news: News){
         val gson = Gson()
         val jsonNews = gson.toJson(news, News::class.java)
@@ -28,17 +30,19 @@ class NewsLocalSource (val sharedPref: SharedPreferences) {
         }
     }
 
-    fun getNewsMap(): Map<*,*>{
+    fun getNewsMap(): MutableList<News>{
+        val newsList = mutableListOf<News>()
+        sharedPref.all.forEach{ entry->
+            val news = gson.fromJson(entry.value as String, News::class.java)
+            newsList.add(news)
+        }
+        return newsList
+    }
 
-        /*val gson = Gson()
-        val jsonNewsMap:MutableMap<String, News> = sharedPref.all as MutableMap<String, News>
-        return gson.fromJson<MutableMap<String, News>>(jsonNewsMap, News::class.java)*/
-
-        val gson = Gson()
-        val jsonNews: String = sharedPref.all.toString()
-        val map: Map<*, *> = gson.fromJson(jsonNews, Map::class.java)
-        Log.d("@dev", map.toString())
-        return map
+    fun findAllKotlin():MutableList<News>{
+        return sharedPref.all.map { entry ->
+            gson.fromJson(entry.value as String, News::class.java)
+        }.toMutableList()
     }
 
 
