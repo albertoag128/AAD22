@@ -22,11 +22,6 @@ class SecureSharedPreference (val applicationContext: Context){
         EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
     )
 
-    fun secure(c:Customer){
-        val secure = SecureSharedPreference(applicationContext)
-        secure.saveCustomer(c)
-    }
-
     fun saveCustomer(c:Customer){
         val edit = sharedPreferences.edit()
         edit.putInt("id", c.id)
