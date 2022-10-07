@@ -12,8 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AAD22"
         tools:targetApi="31">
+
         <activity
-            android:name=".ut01.ex04.Ut01Ex04Activity"
+            android:name=".ut01.ex05.presentation.Ut01Ex05Activity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
@@ -25,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

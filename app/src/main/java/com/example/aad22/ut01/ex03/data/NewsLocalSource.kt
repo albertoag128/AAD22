@@ -32,7 +32,7 @@ class NewsLocalSource (val sharedPref: SharedPreferences) {
 
     fun getNewsMap(): MutableList<News>{
         val newsList = mutableListOf<News>()
-        sharedPref.all.forEach{ entry->
+        sharedPref.all.forEach{ entry ->
             val news = gson.fromJson(entry.value as String, News::class.java)
             newsList.add(news)
         }
