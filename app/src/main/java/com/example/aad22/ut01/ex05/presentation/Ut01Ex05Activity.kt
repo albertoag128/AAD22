@@ -29,10 +29,14 @@ class Ut01Ex05Activity : AppCompatActivity() {
 
         var users = userRepository.getUsers().toMutableList()
         mostrar(users)
+        Log.d("@dev", "------------------------------------------------------------------------")
         userRepository.remove(3)
         users.clear()
         users = userRepository.getUsers().toMutableList()
         mostrar(users)
+        Log.d("@dev", "------------------------------------------------------------------------")
+        var user = userRepository.findById(1)
+        Log.d("@dev", user.toString())
 
     }
 

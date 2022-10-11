@@ -14,19 +14,15 @@ class UserRepository(
     //First from local and after that, from remote
 
     fun getUsers(): List<User>{
-        var users = localSource.getUsers()
-        if(users==null || users.isEmpty()){
-            users = remoteSource.getUsers()
+        return localSource.getUsers().isEmpty().run {
+            val users = remoteSource.getUsers()
             localSource.saveUsers(users)
+            users
         }
-        return users
     }
 
     fun findById(userId:Int): User{
         var user = localSource.findById(userId)
-        if(user==null){
-            user = remoteSource.findById(userId)
-        }
         return user
     }
 

@@ -34,28 +34,12 @@ class UsersLocalSource (val sharedPref:SharedPreferences) {
     }
 
     fun findById(userId:Int):User{
-        val jsonUser = sharedPref.getString(userId.toString(), "no existe")
+        val jsonUser = sharedPref.getString(userId.toString(),null)
         return gson.fromJson<User>(jsonUser, User::class.java)
     }
 
     fun remove(userId:Int){
-        var lista: MutableList<User> = mutableListOf()
-        lista.addAll(getUsers())
-        if(lista==null || lista.isEmpty()){
-            val remoteSource = UsersRemoteSource()
-            lista = remoteSource.getUsers() as MutableList<User>
-        }
-
-        var index = 0
-
-        for(u:User in lista){
-            if(u.id == userId){
-                index = lista.indexOf(u)
-            }
-        }
-
-        lista.removeAt(index)
-        saveUsers(lista)
+        sharedPref.edit().remove(userId.toString()).apply()
     }
 
 }
