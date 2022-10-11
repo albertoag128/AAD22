@@ -23,13 +23,13 @@ class RetrofitClient {
         return buildClient().create(ApiEndPoint::class.java)
     }
 
-    fun getUsers():List<User>?{
+    fun getUsers():List<User>{
         val users = apiEndPoints.getUsers()
         val response = users.execute()
         return if(response.isSuccessful){
-            response.body()
+            response.body() ?: emptyList()
         }else{
-            emptyList<User>()
+            emptyList()
         }
     }
 

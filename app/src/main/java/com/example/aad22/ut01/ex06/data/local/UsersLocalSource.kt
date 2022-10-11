@@ -17,10 +17,8 @@ class UsersLocalSource (val sharedPref:SharedPreferences) {
     }
 
     fun saveUsers(lista:List<User>?){
-        if (lista != null) {
-            lista.forEach {
-                saveUser(it)
-            }
+        lista?.forEach {
+            saveUser(it)
         }
     }
 

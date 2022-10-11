@@ -2,7 +2,6 @@ package com.example.aad22.ut01.ex06.data
 
 import com.example.aad22.ut01.ex06.data.local.UsersLocalSource
 import com.example.aad22.ut01.ex06.data.remote.RetrofitClient
-import com.example.aad22.ut01.ex06.data.remote.UsersRemoteSource
 import com.example.aad22.ut01.ex06.domain.User
 
 class UserRepository (val remoteSource:RetrofitClient, val localSource: UsersLocalSource){
