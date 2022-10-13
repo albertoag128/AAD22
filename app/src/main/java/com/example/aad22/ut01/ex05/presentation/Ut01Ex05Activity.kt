@@ -37,6 +37,7 @@ class Ut01Ex05Activity : AppCompatActivity() {
         Log.d("@dev", "------------------------------------------------------------------------")
         var user = userRepository.findById(1)
         Log.d("@dev", user.toString())
+        // userRepository.localSource.removeAll()
 
     }
 

@@ -19,27 +19,31 @@ class UsersLocalSource (val sharedPref:SharedPreferences) {
     }
 
     fun saveUsers(usersList: List<User>){
-        for(u:User in usersList){
-            saveUser(u)
+        usersList.forEach {
+            saveUser(it)
         }
     }
 
     fun getUsers(): List<User>{
         val usersList = mutableListOf<User>()
-        sharedPref.all.forEach{
-            var user = gson.fromJson(it.value as String, User::class.java)
+        sharedPref.all.forEach{ itemDelMapa ->
+            var user = gson.fromJson(itemDelMapa.value as String, User::class.java)
             usersList.add(user)
         }
         return usersList
     }
 
-    fun findById(userId:Int):User{
-        val jsonUser = sharedPref.getString(userId.toString(),null)
-        return gson.fromJson<User>(jsonUser, User::class.java)
+    fun findById(userId:Int):User?{
+        val jsonUser = sharedPref.getString(userId.toString(), null)
+        return gson.fromJson(jsonUser, User::class.java)
     }
 
     fun remove(userId:Int){
         sharedPref.edit().remove(userId.toString()).apply()
+    }
+
+    fun removeAll(){
+        sharedPref.edit().clear().apply()
     }
 
 }

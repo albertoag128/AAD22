@@ -21,7 +21,7 @@ class UserRepository(
         }
     }
 
-    fun findById(userId:Int): User{
+    fun findById(userId:Int): User?{
         var user = localSource.findById(userId)
         return user
     }
