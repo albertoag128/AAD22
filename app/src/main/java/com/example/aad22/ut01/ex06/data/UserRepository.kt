@@ -6,7 +6,7 @@ import com.example.aad22.ut01.ex06.domain.User
 
 class UserRepository (val remoteSource:RetrofitClient, val localSource: UsersLocalSource){
 
-    fun getUsers():List<User>?{
+    fun getUsers(): List<User> {
         return localSource.getUsers().isEmpty().run{
             val users = remoteSource.getUsers()
             localSource.saveUsers(users)
@@ -14,7 +14,7 @@ class UserRepository (val remoteSource:RetrofitClient, val localSource: UsersLoc
         }
     }
 
-    fun findUserById(userId:Int):User?{
+    fun findUserById(userId:Int): User? {
         return localSource.findUserById(userId)?.let {
             remoteSource.getUser(userId)
         }

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AAD22"
         tools:targetApi="31">
         <activity
-            android:name=".ut01.ex07.presentation.Ut01Ex07Activity"
+            android:name=".ut01.ex08_form_use_data_aad.presentation.Ut01Ex08FormUseDataAad"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
